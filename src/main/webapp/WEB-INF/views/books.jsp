@@ -10,7 +10,7 @@
     <c:if test="${not empty books}">
 
     <ul><c:forEach var="book" items="${books}">
-        <li><a href="./books/details"><c:out value="${book.id}"/> <c:out value="${book.title}"/></a></li>
+        <li><a href=" /books/details/<c:out value="${book.id}"/>" ><c:out value="${book.title}"/></a></li>
 
 
         </c:forEach>

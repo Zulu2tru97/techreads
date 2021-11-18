@@ -5,8 +5,9 @@
 <html>
     <body>
         <h1>Details</h1>
-        <a href="<c:url value="/books/edit" />">Add Books</a>
-        <a href="<c:url value="/books/delete" />">Add Books</a>
+
+        <a href="/books/edit/<c:out value="${book.id}" />">Edit</a>
+        <a href="/books/delete/<c:out value="${book.id}" />">Delete</a>
 
         <c:out value="${book.rating}"/> <c:out value="${book.title}"/>
         <img src="<c:out value="${book.img}" />" /> <br />

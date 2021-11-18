@@ -41,18 +41,18 @@ public class BookController {
     @RequestMapping(value = "/submit", method=POST)
     public View submitForm(@ModelAttribute Book newBook) {
         bookRepository.saveAndFlush(newBook);
-        return new RedirectView("/books");
+        return new RedirectView("/");
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("/delete/{id}")
     public View remove(@PathVariable("id")Long id) {
         bookRepository.deleteById(id);
-        return new RedirectView("/books");
+        return new RedirectView("/");
     }
 
     @RequestMapping("/details/{id}")
     public ModelAndView details(@PathVariable("id")Long id) {
-        ModelAndView mav = new ModelAndView("detail");
+        ModelAndView mav = new ModelAndView("details");
 
         mav.addObject("book", bookRepository.getById(id));
 
@@ -68,7 +68,7 @@ public class BookController {
         return mav;
     }
 
-    @RequestMapping(value = "/edit", method=POST)
+    @RequestMapping(value = "/details/edit", method=POST)
     public View editSubmit(@ModelAttribute Book book) {
         bookRepository.saveAndFlush(book);
         return new RedirectView("/books");
