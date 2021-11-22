@@ -2,13 +2,13 @@ package com.manifestcorp.techreads.controller;
 
 import com.manifestcorp.techreads.model.Book;
 import com.manifestcorp.techreads.repository.BookRepository;
-import org.h2.engine.Mode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
+
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -38,20 +38,20 @@ public class BookController {
         return "add";
     }
 
-    @RequestMapping(value = "/submit", method=POST)
-    public View submitForm(@ModelAttribute Book newBook) {
+    @RequestMapping(value ={"","/"}, method=POST)
+    public RedirectView added(@ModelAttribute Book newBook) {
         bookRepository.saveAndFlush(newBook);
         return new RedirectView("/");
     }
 
     @RequestMapping("/delete/{id}")
-    public View remove(@PathVariable("id")Long id) {
+    public RedirectView delete(@PathVariable(value = "id") Long id){
         bookRepository.deleteById(id);
         return new RedirectView("/");
     }
 
     @RequestMapping("/details/{id}")
-    public ModelAndView details(@PathVariable("id")Long id) {
+    public ModelAndView details(@PathVariable(value="id")Long id) {
         ModelAndView mav = new ModelAndView("details");
 
         mav.addObject("book", bookRepository.getById(id));
@@ -60,17 +60,12 @@ public class BookController {
     }
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable("id")Long id) {
-        ModelAndView mav = new ModelAndView("edit");
+    public String edit(Model model, @PathVariable(value = "id") Long id){
 
-        mav.addObject("bookForm", bookRepository.getById(id));
-
-        return mav;
+        model.addAttribute("bookForm", bookRepository.getById(id));
+        return "add";
     }
 
-    @RequestMapping(value = "/details/edit", method=POST)
-    public View editSubmit(@ModelAttribute Book book) {
-        bookRepository.saveAndFlush(book);
-        return new RedirectView("/books");
-    }
+
+
 }

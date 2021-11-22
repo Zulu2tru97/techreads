@@ -11,7 +11,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String title;
-    Float rating;
+    double rating;
     String author;
     String img;
 
@@ -21,7 +21,7 @@ public class Book {
     public Book() {}
     public Book(String title) {this.title = title;}
 
-    public Book(String title, Float rating, String author,String img) {
+    public Book(String title, double rating, String author,String img) {
         this.title = title;
         this.rating = rating;
         this.author = author;
@@ -36,8 +36,8 @@ public class Book {
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
-    public Float getRating() {return rating;}
-    public void setRating(Float rating) {this.rating = rating;}
+    public double getRating() {return rating;}
+    public void setRating(double rating) {this.rating = rating;}
 
     public String getAuthor() {return author;}
     public void setAuthor(String author) {this.author = author;}
