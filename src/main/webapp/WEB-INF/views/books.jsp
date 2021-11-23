@@ -1,6 +1,14 @@
 <!DOCTYPEhtml>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+<style>
+    ul.no-bullets {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+</style>
 <html>
     <body>
     <h1>Books</h1>
@@ -9,7 +17,7 @@
 
     <c:if test="${not empty books}">
 
-    <ul>
+    <ul class="no-bullets">
         <c:forEach var="book" items="${books}">
 
             <li><a href=" /books/details/<c:out value="${book.id}"/>" ><c:out value="${book.title}"/></a></li>
